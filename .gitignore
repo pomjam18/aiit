@@ -50,3 +50,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/2ahme/umsatzsteuerrechner/build/
+/2ahme/umsatzsteuerrechner/dist/
