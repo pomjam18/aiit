@@ -9,7 +9,7 @@ int main ()
   printf("UE05 Einkommenssteuer\n");
   printf("---------------------\n");
   
-  printf(" Verfügbareseinkommen:");
+  printf("Verfügbareseinkommen:");
   
   fgets(s, 80, stdin);
   sscanf(s, "%lf" , &einkommen);
@@ -17,7 +17,7 @@ int main ()
     printf("Eingabefehler\n");
     return 1; 
   }
-  if (einkommen >= 1E6) {
+  else if (einkommen >= 1E6) {
     steuer = (einkommen - 1E6) * 0.55;
     steuer = steuer + 10000 * 0.5;
     steuer = steuer + 30000 * 0.48;
