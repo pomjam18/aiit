@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ue_05_einkommenssteuer
+PROJECTNAME=Uebung
 
 # Active Configuration
 DEFAULTCONF=Debug

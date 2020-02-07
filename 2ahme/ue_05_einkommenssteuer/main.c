@@ -17,7 +17,7 @@ int main ()
     printf("Eingabefehler\n");
     return 1; 
   }
-  else if (einkommen >= 1E6) {
+  if (einkommen >= 1E6) {
     steuer = (einkommen - 1E6) * 0.55;
     steuer = steuer + 10000 * 0.5;
     steuer = steuer + 30000 * 0.48;
