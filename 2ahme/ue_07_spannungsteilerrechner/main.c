@@ -10,7 +10,7 @@ int main ()
   double ue; // Eingangsspannung
   double ua; // Ausgangsspannung
   
-  printf("UE_07 - Spannungsteiler\n");
+  printf("UE_07 - Spannungsteiler\n"do);
   
   do {
     printf("Widerstand R1: ");
