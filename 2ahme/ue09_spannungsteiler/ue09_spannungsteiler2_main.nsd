@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;ue09_spannungsteiler2&#34;,&#34;int main ()&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;A: &#34;&#34;UE09 Spannungsteiler&#34;&#34;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<call text="&#34;r1 = liefereEingabeWert(&#34;&#34;R1/Ohm&#34;&#34;,1)&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<call text="&#34;r2 = liefereEingabeWert(&#34;&#34;R2/Ohm&#34;&#34;,1)&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<call text="&#34;ue = liefereEingabeWert(&#34;&#34;Uein/V&#34;&#34;,0)&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<instruction text="&#34;ua = ue * r2  /  (r1 + r2)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;A: &#34;&#34;Uaus=&#34;&#34; +ua&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<jump text="&#34;return 0&#34;" comment="&#34;&#34;" color="ffffff"></jump>
+	</children>
+</root>
