@@ -4,7 +4,7 @@
 #include <math.h>
 
 int getInputIntegerValue (char text[]) {
-  char s100];
+  char s[100];
   int n;  
   int rv;
 
@@ -33,14 +33,14 @@ double getInputDoubleValue (char text[]) {
   }
 
 
-int getSelectedMenu () {
+int getSelectMenu () {
    double rv;
     
   do{
     printf("-----------------------\n1 ... Würfel\n2 ... Quader\n3 ... Kugel\n4 ... Programm beenden");
     
-    rv = getInputIntegerValue("Auswahl (1-4)")
-  
+    rv = getInputIntegerValue("Auswahl (1-4):")
+            
   }while (rv < 1 || rv >4);
   
 return rv;
@@ -106,8 +106,8 @@ return rv;
  }while (d < 0);
  
  double r = d / 2;
- double volumen = (4 / 3) * m_pi * r * r * r;
- double oberflaeche = 4 * m_pi * r * r;
+ double volumen = (4 / 3) * M_PI * r * r * r;
+ double oberflaeche = 4 * M_PI * r * r;
  
  printf("Volumen: &.2lf\n", volumen);
  printf("Oberfläche: %.2lf\n", oberflaeche);
@@ -118,20 +118,29 @@ return rv;
  
 int main () {
  
+  printf("UE11 - Köeperberechnung mit Menüfunktionen\n\n");
   {
-  int wahl = getSelectMenu();
-  }while (1 == 1) {
- 
-  switch (wahl); {
-  
-  case 1: calcCube(); break;
-  case 2: calcCuboid(); break;
-  case 3: calcSphere(); break;
-  case 4: return 0;
-
-} 
-
-}
-  return (0);
-}
-
+   while (1 == 1) {
+     printf("--------------------");
+      
+     int wahl;
+      
+     wahl = getselectMenu();
+      
+     switch(wahl) {
+        
+      case 1: {
+        calcCube();
+        break; }
+      case 2: {
+        calcCuboid();
+        break; }
+      case 3: {
+         calcSphere();
+         break; }
+      case 4: {
+        return 0; }
+      
+      }
+   }
+  }
