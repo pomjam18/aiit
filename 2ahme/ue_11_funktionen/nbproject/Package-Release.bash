@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=so
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ue11_funktionen
-OUTPUT_BASENAME=ue11_funktionen
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ue_11_funktionen
+OUTPUT_BASENAME=ue_11_funktionen
 PACKAGE_TOP_DIR=ue11funktionen/
 
 # Functions

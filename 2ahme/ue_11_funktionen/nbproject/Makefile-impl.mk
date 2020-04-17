@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=UE11_Funktionen
+PROJECTNAME=ue_11_funktionen
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -1,146 +1,130 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-int getInputIntegerValue (char text[]) {
-  char s[100];
-  int n;  
-  int rv;
+int getInputIntegerValue(char text[])
+{
+    int rv;
+    int n;
+    char s[100];
 
-  do{
-    printf("%s: ", text);
-    fgets(s, 100, stdin);
-    n = sscanf(s, "%d", &rv);
-  }while (n != 1);
-  
-  return rv;
+    do{
+       printf("%s", text);
+        fgets(s, 100, stdin);
+        n = sscanf(s, "%d", &rv);
+
+    } while (n != 1);
+
+    return rv;
 }
 
+double getInputDoubleValue(char text[])
+{
+    double rv;
+    int n;
+    char s[100];
 
-double getInputDoubleValue (char text[]) {
-  char s[100];
-  int n;
-  double rv;
-   
-  do{
-  printf("%s: ", text);
-    fgets(s, 100, stdin);
-    n = sscanf(s, "%lf", &rv);
-  }while (n != 1);
-  
-  return rv;     
-  }
+    do{
+        printf("%s", text);
+        fgets(s, 100, stdin);
+        n = sscanf(s, "%lf", &rv);
 
+    } while (n != 1);
 
-int getSelectMenu () {
-   double rv;
-    
-  do{
-    printf("-----------------------\n1 ... Würfel\n2 ... Quader\n3 ... Kugel\n4 ... Programm beenden");
-    
-    rv = getInputIntegerValue("Auswahl (1-4):")
-            
-  }while (rv < 1 || rv >4);
-  
-return rv;
+    return rv;
 }
-  
 
- double calcCube () {
-   double l;
-   
-  printf("Wuerfel:\n");  
-   
- do{
-   double l = getInputDoubleValue("Länge: ");
-   
- }while (l < 0);
- 
-  double volumen = l * l * l;
-  double oberflaeche = l * l *6; 
+int getSelectedMenu()
+{
+    int rv;
 
+    do{
+        printf("===============\n  1...Wuerfel\n  2...Quader\n  3...Kugel\n  4...Programm beenden\n");
+       rv = getInputIntegerValue("Auswahl (1-4)");
 
-  printf("Volumen:%2.lf\n", volumen);
-  printf("Oberfläche: %2.fl\n", oberflaeche);
-  
-  return 0;
- }
- 
-   
- double calcCuboid () {
-   double l;
-   double h;
-   double b;
-   
- printf("Quader: \n");
- 
- do{
-  double l = getInputDoubleValue("Länge: ");
- }while (l < 0);
- do{
-  double b = getInputDoubleValue("Breite: ");
- }while (b < 0);
- do{
-  double h = getInputDoubleValue("Höhe: ");
- }while (h < 0);
-  
-   
-   double volumen = l * b * h;
-   double oberflaeche = 2 * l * b + 2 * l * h + 2 * b * h;
-   
-   printf("Volumen: %.2lf", volumen);
-   printf("Oberfläche: %.2lf", oberflaeche);
-   
-   return 0;
- }
- 
- 
- double calcSphere(){
-   double d;
-   
- printf("Kugel:\n");
- 
- do{
-    d = getInputDoubleValue("Durchmesser: ");
- }while (d < 0);
- 
- double r = d / 2;
- double volumen = (4 / 3) * M_PI * r * r * r;
- double oberflaeche = 4 * M_PI * r * r;
- 
- printf("Volumen: &.2lf\n", volumen);
- printf("Oberfläche: %.2lf\n", oberflaeche);
- 
- return 0;
- }
- 
- 
-int main () {
- 
-  printf("UE11 - Köeperberechnung mit Menüfunktionen\n\n");
-  {
-   while (1 == 1) {
-     printf("--------------------");
-      
-     int wahl;
-      
-     wahl = getselectMenu();
-      
-     switch(wahl) {
-        
-      case 1: {
-        calcCube();
-        break; }
-      case 2: {
-        calcCuboid();
-        break; }
-      case 3: {
-         calcSphere();
-         break; }
-      case 4: {
-        return 0; }
-      
-      }
-   }
-  }
+    } while(rv < 1 || rv > 4);
+
+    return rv;
+}
+
+void calcCube()
+{
+    double laenge;
+    double volumen;
+    double oberflaeche;
+
+    printf("\n  Würfel:");
+
+    do{
+       laenge = getInputDoubleValue("Laenge: ");
+    
+    } while (laenge < 0);
+
+    volumen = laenge * laenge * laenge;
+    oberflaeche = 6 * laenge * laenge;
+
+    printf("Volumen: %.2lf\n", volumen);
+    printf("Oberflaeche: %.2lf\n", oberflaeche);
+}
+
+void calcCuboid()
+{
+    double laenge;
+    double breite;
+    double hoehe;
+    double volumen;
+    double oberflaeche;
+
+    do{
+       laenge = getInputDoubleValue("Laenge: ");
+    
+    } while (laenge < 0);
+
+    do{
+       breite = getInputDoubleValue("Breite: ");
+    
+    } while (breite < 0);
+
+    do{
+       hoehe = getInputDoubleValue("Hoehe: ");
+    
+    } while (hoehe < 0);
+
+    volumen = laenge * breite * hoehe;
+    oberflaeche = 2 * laenge * breite + 2 * laenge * hoehe + 2 * breite * hoehe;
+
+    printf("Volumen: %.2lf\n", volumen);
+    printf("Oberflaeche: %.2lf\n", oberflaeche);
+}
+
+void calcSphere()
+{
+    double durchmesser;
+    double oberflaeche;
+    double volumen;
+
+    do{
+       durchmesser = getInputDoubleValue("Durchmesser: ");
+    
+    } while (durchmesser < 0);
+
+    oberflaeche = 4 * M_PI * ((durchmesser / 2) * (durchmesser / 2));
+    volumen = (4 / 3) * M_PI * ((durchmesser / 2) * (durchmesser / 2) * (durchmesser/2));
+
+    printf("Volumen: %.2lf\n", volumen);
+    printf("Oberflaeche: %.2lf\n", oberflaeche);
+}
+
+int main()
+{
+    int auswahl = getSelectedMenu();
+
+    switch(auswahl) {
+
+     case 1: calcCube(); break;
+     case 2: calcCuboid(); break;
+     case 3: calcSphere(); break;
+     case 4: return 0;
+
+    }
+}
