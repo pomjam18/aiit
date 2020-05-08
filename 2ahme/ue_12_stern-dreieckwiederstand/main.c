@@ -7,7 +7,7 @@ int wandleDreieckInStern(double rab, double rac, double rbc, double *pra, double
   
   double pruefe = rac + rab + rbc;
     
-  if (ra != NULL && rb != NULL && rc != NULL && pruefe > 0 && rac >0 && rab > 0 && rbc > 0) {
+  if (pra != NULL && prb != NULL && prc != NULL && pruefe > 0 && rac >0 && rab > 0 && rbc > 0) {
  
       *pra = (rac * rab) / pruefe;
       *prb = (rab * rbc) / pruefe;
@@ -27,7 +27,7 @@ int wandleSternInDreieck(double ra, double rb, double rc, double *prab, double *
      
      *prac = ((ra * rb) + (rb * rc) + (rc * ra)) / rb;
      *prab = ((ra * rb) + (rb + rc) + (rc * ra)) / rc;
-     *prbc = ((ra * rb) + (rb * rc) + (re * ra)) / ra;
+     *prbc = ((ra * rb) + (rb * rc) + (rc * ra)) / ra;
      
      return 0;
      
@@ -38,21 +38,52 @@ int wandleSternInDreieck(double ra, double rb, double rc, double *prab, double *
 
 }
 
-int main () {
-  
-  int f1;
-  int f2;
+int main ()
+{
+  int rv;
   double ra, rb, rc;
   double rab, rac, rbc;
+  double raT, rbT, rcT;
   
-  f1 = wandleDreieckInStern(10, 15, 20, &ra, &rb, &rc);
-  f2 = wandleSternInDreieck(25, 30, 35, &rab, &rac, &rbc);
+  // Test 1: wandleDreieckInStern
   
+  rab = 1;
+  while (rab <= 2) {  
+  	rac =2 ,rbc =3;
+  	rv = wandleDreieckInStern(rab, rac, rbc, &ra, &rb, &rc);
+  
+  	raT = (rac * rab) / (rac + rab + rbc);
+  	rbT = (rab * rbc) / (rac + rab + rbc);
+  	rcT = (rac * rbc) / (rac + rab + rbc);
+  
+  	const double eps = 1E-10;
+  	if (abs (ra - raT ) <= eps) {
+  		printf("ra OK ");
+  	} else {
+  		printf("Fehler ra");
+  	}
+  
+   	if (abs (rb - rbT) <= eps) {
+  		printf("rb OK ");
+  	} else {
+  		printf("Fehler rb");
+  	}
+  
+  	if (abs (rc - rcT) <= eps) {
+  		printf("rc OK ");
+  	} else {
+  		printf("Fehler rc");
+  	}
+  
+  	if (rv != 0) {
+    	printf("Test 1: Fehler rv = %d\n", rv);
+  	} else {
+    
+    	printf("rab=%lf, rac=%lf, rbc=%lf -> ra=%lf, rb=%lf, rc=%lf\n",
+           rab, rac, rbc, ra, rb, rc);
+  	}
+  	rab++;
+  }
   return 0;
 }
-
-
-
-  
-
 
