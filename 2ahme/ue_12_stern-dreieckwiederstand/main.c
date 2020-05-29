@@ -132,6 +132,46 @@ int wertparameterGleichNull () {
  return rv;
 }
 
+int berechnungwirdgeprueft () {
+  
+  double ra;
+  double rab;
+  double rbc;
+  double rac;
+  double rb2;
+  double ra2;
+  double rc2;
+  double ra1;
+  double rb1;
+  double rc1;
+  
+  printf("Test 4 \n");
+  
+  // Ra 0.1- 1M
+  for (int i = 0; i < 1000; i++) {
+    ra = 1000000.0 * rand() / RAND_MAX;
+    
+     // Rb, Rc 0.1 * Ra - 10 * Ra
+  double rb = (10.0 * rand() / RAND_MAX) * ra;
+  double rc = (10.0 * rand() / RAND_MAX) * ra;
+  
+  ra1 = ra;
+  rb1 = rb;
+  rc1 = rc;
+  wandleSternInDreieck(ra, rb, rc, &rab, &rbc, &rac);
+  wandleDreieckInStern(rab, rbc, rac, &ra, &rb, &rc);
+  ra2 = ra;
+  rb2 = rb;     
+  rc2 = rc;
+    
+   if (ra2 == ra1 &&  rb2 == rb1 && rc2 == rc1){
+      printf("         OK\n");
+   }else{
+      printf("         Fehler\n");
+   } 
+  } 
+}
+ 
 
 int main () {
   
@@ -147,6 +187,7 @@ int main () {
  // Test 3: Wertparameter <= 0 
  int funktion4 = wertparameterGleichNull();
 
+ int funktion5 = berechnungwirdgeprueft();
 }
 
 //return 0;
