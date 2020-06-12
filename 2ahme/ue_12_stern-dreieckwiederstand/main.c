@@ -6,11 +6,11 @@ int wandleDreieckInStern (double rab, double rac, double rbc, double *pRa, doubl
   
  double pruefe = rac + rab + rbc;
   
-  if (pRa != NULL && pRb != NULL && pRc != NULL && pruefe > 0 && rac > 0 && rab > 0 && rbc > 0) {
+  if (pRa != NULL && pRb != NULL && pRc != NULL && pruefe > 0 && rac >= 0 && rab >= 0 && rbc >= 0) {
     
-    *pRa = (rac * rab) / (rac + rab + rbc);
-    *pRb = (rab * rbc) / (rac + rab + rbc);
-    *pRc = (rac * rbc) / (rac + rab + rbc);
+    *pRa = (rac * rab) / (pruefe);
+    *pRb = (rab * rbc) / (pruefe);
+    *pRc = (rac * rbc) / (pruefe);
     
     return 0;
   } else {
