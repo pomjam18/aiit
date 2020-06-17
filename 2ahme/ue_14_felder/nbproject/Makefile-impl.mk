@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ue14_felder
+PROJECTNAME=ue_14_felder
 
 # Active Configuration
 DEFAULTCONF=Debug
