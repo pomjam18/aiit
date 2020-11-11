@@ -59,10 +59,6 @@ void calcMovingAveraging(double f[], int length)
     int n = 10;
     int j = 0;
     
-    for(int i=0; i < 1000; i++) {
-        
-        f[i] = sin(((2 * M_PI) / 100) * i);
-    }
     
     for(int i < 1000; i++) {
         
