@@ -90,3 +90,6 @@ dkms.conf
 /3ahme/ue_03_StatischeBerechnungen/build/
 /3ahme/ue_04_felder/build/
 /3ahme/ue_04_ekt-auswertung/build/
+/3ahme/ue_04_ekt-auswertung/dist/
+/3ahme/CppApplication_1/dist/
+/3ahme/CppApplication_1/build/

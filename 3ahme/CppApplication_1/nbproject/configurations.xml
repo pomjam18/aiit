@@ -35,14 +35,6 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
-        <cTool>
-          <warningLevel>2</warningLevel>
-        </cTool>
-        <linkerTool>
-          <linkerLibItems>
-            <linkerLibStdlibItem>Mathematics</linkerLibStdlibItem>
-          </linkerLibItems>
-        </linkerTool>
       </compileType>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
