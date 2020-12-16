@@ -104,6 +104,70 @@ void bubbleSort(double f[], int anzahl)
   }
 }
 
+void merge(double f[], int links, int mitte, int rechts)
+{
+    //Teilfelder, also Feld links von der Mitte und rechts von der Mitte auf ein temporäres neues Feld kopieren
+
+    double l[MAX], r[MAX]; //linkes und rechtes Hilfsfeld
+
+    int i,j, k;
+    int nl = mitte - links + 1;
+    int nr = rechts - mitte;
+
+    //Schritt 1: kopieren der Original-Daten auf die Hilfsfelder
+    for (i = 0; i < nl; i++)
+        l[i] = f[links +i];
+
+    for (j = 0; j < nr; j++)
+        r[j] = f[mitte + 1 + j];
+
+    //Schritt 2: Sortiert zurück ins Feld kopieren
+    i = 0;
+    j = 0;
+    k = links;
+    while( (i < nl) && (j < nr))
+    {
+        if(l[i] > r[j])
+        {
+            f[k] = r[j];
+            j++;
+            k++;
+        }
+        else
+        {
+            f[k] = l[i];
+            i++;
+            k++;
+        }
+    }
+    //Restlichen Elemente vom linke oder rechten Feld in das Hauptfeld zurückspeichern
+    while( (i < nl) )
+        f[k++] = l[i++];
+    while( (j < nr) )
+        f[k++] = r[j++];
+}
+
+void mergeSort2(double f[], int links, int rechts)
+{
+    if(links < rechts)
+    {
+        int mitte = links + (rechts - links)/2;
+
+        mergeSort2(f, links, mitte);
+        mergeSort2(f, mitte + 1, rechts);
+
+        //Sortierung
+        merge(f, links, mitte, rechts);
+    }
+
+}
+
+void mergeSort(double f[], int anzahl)
+{
+    mergeSort2(f, 0, anzahl-1);
+}
+
+
 int main(int argc, char** argv)
 {
   double f[MAX];    // Feld
@@ -131,7 +195,10 @@ int main(int argc, char** argv)
 
   printf("Zweitkleinste Zahl: %lf\nZweitgrößte Zahl %lf\n", mini2, maxi2);
 
- 
+  mergeSort(f, anzahl);
+  
+   feldAusgabe("\nMerge Sort:\n", f, anzahl);
+  
 
-  return 0;
+return 0; 
 }
