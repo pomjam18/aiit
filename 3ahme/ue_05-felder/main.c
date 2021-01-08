@@ -15,9 +15,9 @@ int berechneGanzeZZ(int ug, int og)
 // FK ZZ berechnen
 double berechneFkZZ(double ug, double og)
 {
-   double r = og - ug + 1;
+   double r = og - ug;
 
-  return ug + (double)(r * rand()/(RAND_MAX + 1.0)); 
+  return ug + (double)(r * rand()/(RAND_MAX)); 
 }
 
 // Feld erstellen mit 20 bis 60 Zahlen zwischen 50 und 250
@@ -57,7 +57,7 @@ anzahl = anzahl -1;
 
  
 
-  for (int i = 0; i <  (anzahl / 2); i++) {
+  for (int i = 0; i <=  (anzahl / 2); i++) {
 
     tmp = f[i];
 
@@ -90,7 +90,7 @@ void bubbleSort(double f[], int anzahl)
 
   for (int i = 1; i < anzahl; i++) {
 
-    for (int j = 0; j < anzahl - 1 ; j++)  {
+    for (int j = 0; j < anzahl - 1 - i; j++)  {
 
       if (f[j] > f[j + 1]) {
 

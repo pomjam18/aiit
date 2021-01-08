@@ -11,7 +11,7 @@ double gibFkZahlEin(char* txt)
     
     do
     {
-    printf(" %s: ", txt);
+    printf("%s: ", txt);
      
     fgets(s, 80, stdin);
     n = sscanf(s, "%lf", &wert);
@@ -27,15 +27,15 @@ void gibMatrixEin(char name, double* a11, double* a12, double* a21, double* a22)
     
     kleinbuchstabe = name - 'A' + 'a';
 
-    printf("Matrix %c\n", name);
+    printf("\nMatrix %c\n", name);
     
-    sprintf(&i, "%c 11", kleinbuchstabe);
+    sprintf(&i, "%c11", kleinbuchstabe);
     *a11 = gibFkZahlEin(i);
-    sprintf(&i, "%c 12", kleinbuchstabe);
+    sprintf(&i, "%c12", kleinbuchstabe);
     *a12 = gibFkZahlEin(i);
-    sprintf(&i, "%c 21", kleinbuchstabe);
+    sprintf(&i, "%c21", kleinbuchstabe);
     *a21 = gibFkZahlEin(i);
-    sprintf(&i, "%c 22", kleinbuchstabe);
+    sprintf(&i, "%c22", kleinbuchstabe);
     *a22 = gibFkZahlEin(i);
     
     
@@ -44,7 +44,7 @@ void gibMatrixEin(char name, double* a11, double* a12, double* a21, double* a22)
 
 void gibMatrixAus(char name, double a11, double a12, double a21, double a22)
 {
-    printf("Matrix %c\n", name);
+    printf("\nMatrix %c\n", name);
     
     printf("/ \t %10.3lf \t %10.3lf \t\t\\\n", a11, a12);
     printf("\\\t %10.3lf \t %10.3lf \t\t/\n", a21, a22);
@@ -94,7 +94,7 @@ void loescheBildschirm()
 
 void warteAufEnterTaste()
 {
-  char s[4]; printf("Bitte ENTER Taste drücken!"); 
+  char s[4]; printf("\nBitte ENTER Taste drücken!"); 
   fgets(s,4,stdin); 
   fflush(stdin);
 }
@@ -113,13 +113,81 @@ int main ()
     double c11;
     double c12;
     double c21;
-    double c22; 
+    double c22;
+    int eingabe;
      
+    printf("Rechnen mit 2x2 Matrizen\n"
+           "========================\n");
+    
+    printf("\nAddition zweier Matrizen .................................1\n"
+           "Subtraktion zweier Matrizen ..............................2\n"
+           "Multiplikation zweier Matrizen ...........................3\n"
+           "Programmende .............................................9\n\n");
+    
+    eingabe = gibFkZahlEin("Ihre Wahl"); 
+    
+    loescheBildschirm();1
+    
+    
+    switch(eingabe)
+    {
+    case 1:
+        
+    printf("Addition zweier Matrizen\n");
+                   
     gibMatrixEin('A', &a11, &a12, &a21, &a22);
     
     gibMatrixEin('B', &b11, &b12, &b21, &b22);
     addiereMatrix(a11, a12, a21, a22, b11, b12, b21, b22, &c11, &c12, &c21, &c22);
     gibMatrixAus('C', c11, c12, c21, c22);
+    
+    warteAufEnterTaste();
+    loescheBildschirm();
+    
+    main();
+    
+    break;
+    
+    case 2:
+    
+    printf("Subtraktion zweier Matrizen\n");    
+        
+    gibMatrixEin('A', &a11, &a12, &a21, &a22);
+    
+    gibMatrixEin('B', &b11, &b12, &b21, &b22);
+    subtrahiereMatrix(a11, a12, a21, a22, b11, b12, b21, b22, &c11, &c12, &c21, &c22);
+    gibMatrixAus('C', c11, c12, c21, c22);    
+    
+    warteAufEnterTaste();
+    loescheBildschirm();
+             
+    main();
+    
+    break;
+
+    case 3:
+        
+    printf("Multiplikation zweier Matrizen\n");    
+        
+    gibMatrixEin('A', &a11, &a12, &a21, &a22);
+    
+    gibMatrixEin('B', &b11, &b12, &b21, &b22);
+    multipliziereMatrizen(a11, a12, a21, a22, b11, b12, b21, b22, &c11, &c12, &c21, &c22);
+    gibMatrixAus('C', c11, c12, c21, c22);      
+    
+    warteAufEnterTaste();
+    loescheBildschirm();    
+    
+    main();
+     
+    break;
+    
+    case 9:
+        
+        printf("Programm beendet!");
+        
+    break;    
+    }
     
     return 0;
 }

@@ -226,6 +226,31 @@ int changeFeld(double f[], double f_orgin[], int length)
   return 0;
 }
 
+void analyseECG()
+{
+    const int ecg_timeout = ECGDATA_TIMEOUT * ECGDATA_SAMPLE_RATE;
+
+    static int offset = 0;
+    static double ecg[ECGDATA_BUFFERSIZE]; //measurement data
+
+    double ecg_compute[ECGDATA_BUFFERSIZE];
+    double rpeak[ECGDATA_BUFFERSIZE];
+    double rpeaksignal[ECGDATA_BUFFERSIZE];
+    int ecg_length = 0;
+    int rpeak_length = 0;
+
+    while(1)
+    {
+
+        //1.) Alte bereits analysiert Daten aus dem Messdaten-Buffer löschen
+        //2.) Warten bis Datei ECGDATA_FILENAME vom Simulator erstellt wurde und danach in den Buffer einelesen. Benutzen Sie dazu die Funktion readECG
+        //3.) QRS-Komplexe detektieren und Herfrequenzen berechen
+        //4.) Wenn keine Pulse gefünden wurden Schock abgeben (Ausganbe des Textes Schock in der Konsole)
+        //5.) Aktuell berechnete Herzfrequenzen in der Konsole ausgeben
+        //6.) Gelesene Datei löschen benutzen Sie daz den Befehl remove. Der Simulator erstellt dann eine neue Datei mit Messdaten.
+        //Testen Sie mit dem Simulator einen Hersstillstand
+    }
+}
 
 int main ()
 {

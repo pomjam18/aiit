@@ -2,27 +2,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double eingabe(char txt)
+double eingabe(char* txt)
 {
     char s[80];
     double x;
+    double n = 0;
     
-    
-    printf(" %c ", txt);
-    scanf( "%lf" , &x);
+    do 
+    {
+    printf(" %s ", txt);
+    n = scanf( "%lf" , &x);
+    }while(n =! 1);
     
     return x;
 }
 
 double berechnung (double b, double e)
 {
-
-for(int i = 0; i < e; i++)
+  double ergebnis = b;
+    
+for(int i = 1; i < e; i++)
 {
-    b = b * b;
+    ergebnis = ergebnis * b;
 }    
    
-double ergebnis = b;
+
 return ergebnis; 
 
 }
@@ -35,12 +39,17 @@ int main ()
  double exponent;
  double ergebnis;
  
+ printf("\tE X P O N E N T I A L R E C H N E R \n\n");
+
+ 
  basis = eingabe("Bitte geben Sie die Basis ein: ");
- exponent = eingabe("Bitte geben Sie den Exponenten ein; ");
+ exponent = eingabe("Bitte geben Sie den Exponenten ein: ");
+ 
+
  
  ergebnis = berechnung(basis, exponent);
  
- printf(" Das Ergebnis lautet: %lf", ergebnis);
+ printf("\n Das Ergebnis lautet: %.lf", ergebnis);
     
     
     

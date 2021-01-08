@@ -45,14 +45,14 @@ void eindimensionalesFeld () {
 
     double df1[] = { 1.0, 2.0, 3.0 };
     printf("sizeof(df1) = %d Bytes\n", (int)sizeof(df1));
-    for (int i = 0; i < sizeof(df1) / sizeof(double); i++) {
+    for (int i = 0; i < sizeof(df1)  / sizeof(double); i++) {
         printf(" %f", df1[i]);
     }
     printf("\n\n");
     
     double df2[5] = { 1.0, 2.0, 3.0, 4.0 };
     printf("sizeof(df2) = %d Bytes\n", (int)sizeof(df2));
-    for (int i = 0; i < sizeof(df2) / sizeof(df2[0]); i++) {
+    for (int i = 0; i < sizeof(df2) / sizeof(double); i++) {
         printf(" %f", df2[i]);
     }
     printf("\n\n");
@@ -106,7 +106,7 @@ void zweidimensionaleFelder () {
     printf("f[2][2] %p => %f\n", &f[2][2], f[2][2]);
     printf("f[3][0] %p => %f\n", &f[3][0], f[3][0]);
     printf("f[3][1] %p => %f\n", &f[3][1], f[3][1]);
-    printf("f[3][2] %p => %f\n", &f[3][2], f[3][2]);
+    printf("f[3][2] %p => %f\n\n", &f[3][2], f[3][2]);
     
     // f = { { 1, 2, 3 } }; // nicht moeglich, nur bei Initialisierung
     

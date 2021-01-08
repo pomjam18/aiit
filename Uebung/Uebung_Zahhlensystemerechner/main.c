@@ -48,7 +48,7 @@ int main ()
             break;
             
         default:
-            printf("Falsche EIngabe!");
+            printf("Falsche Eingabe!");
                        
     }    
     
