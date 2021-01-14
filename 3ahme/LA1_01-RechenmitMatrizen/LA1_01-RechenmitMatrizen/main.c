@@ -126,7 +126,7 @@ int main ()
     
     eingabe = gibFkZahlEin("Ihre Wahl"); 
     
-    loescheBildschirm();1
+    loescheBildschirm(); 
     
     
     switch(eingabe)
