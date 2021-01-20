@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;void alalyseECG&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;const int ecg_timeout = ECGDATA_TIMEOUT * ECGDATA_SAMPLE_RATE&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;const int offset = 0&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;static double ecg[ECGDATA_BUFFERSIZE]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;double ecg_compute[ECGDATA_BUFFERSIZE]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;double rpeak[ECGDATA_BUFFERSIZE]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;int ecg_length = 0&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;int rpeak_length = 0&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<while text="&#34;Solange (1)&#34;" comment="" color="ffffff">
+			<qWhile>
+				<alternative text="&#34;offset &#62; 0&#34;" comment="" color="ffffff">
+					<qTrue>
+						<for text="&#34;Zähle i  von 0 bis (ecg_length - offset) Schrittweite ++i&#34;" comment="" color="ffffff">
+							<qFor>
+								<instruction text="&#34;ecg[i] = ecg[offset + i]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+							</qFor>
+						</for>
+					</qTrue>
+					<qFalse>
+					</qFalse>
+				</alternative>
+				<instruction text="&#34; offset = ecg_length - offset&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<while text="&#34;Solange (readECG(ECGDATA_FILENAME, ecg + offset, ECGDATA_BUFFERSIZE - offset, &amp;ecg_length) == FILE_ERROR)&#34;" comment="" color="ffffff">
+					<qWhile>
+						<instruction text="&#34;;&#34;" comment="" color="ffffff" rotated="0"></instruction>
+					</qWhile>
+				</while>
+				<instruction text="&#34;   ecg_length = ecg_length + offset;&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<for text="&#34;Zähle i von 0 bis (ecg_lenght) Schrittweite ++i&#34;" comment="" color="ffffff">
+					<qFor>
+						<instruction text="&#34;ecg_compute[i] = ecg[i]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+					</qFor>
+				</for>
+				<instruction text="&#34; removeOffset(ecg_compute, ecg_length)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;calcMovingAveraging(ecg_compute, ecg_length)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34; diffSignal(ecg_compute, ecg_length)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;normalizeSignal(ecg_compute, ecg_length)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;diffSignal(ecg_compute, ecg_length)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;rpeak_length = findRPeak(ecg_compute, ecg, ecg_length, rpeak, ECGDATA_BUFFERSIZE, &amp;offset)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<alternative text="&#34;(ecg_length - offset) &#62; ecg_timeout&#34;" comment="" color="ffffff">
+					<qTrue>
+						<instruction text="&#34;printf(&#34;&#34;SCHOCK!\n&#34;&#34;)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<for text="&#34;Zähle i von 0 bis (ecg_timeout) Schrittweite ++i&#34;" comment="" color="ffffff">
+							<qFor>
+								<instruction text="&#34; ecg[i] = ecg[ecg_length - ecg_timeout]&#34;" comment="" color="ffffff" rotated="0"></instruction>
+								<instruction text="&#34;offset = 0&#34;" comment="" color="ffffff" rotated="0"></instruction>
+								<instruction text="&#34;ecg_length = ecg_timeout&#34;" comment="" color="ffffff" rotated="0"></instruction>
+							</qFor>
+						</for>
+					</qTrue>
+					<qFalse>
+					</qFalse>
+				</alternative>
+				<instruction text="&#34;  printHeartRate(rpeak, rpeak_length)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34; remove(ECGDATA_FILENAME)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+			</qWhile>
+		</while>
+		<instruction text="&#34;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+	</children>
+</root>
