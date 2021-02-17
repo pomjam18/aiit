@@ -63,7 +63,7 @@ int main ()
             "\t------------------------------\n\n");
     
     
-  //habe versucht in Zeile 44 "namensliste[anzahl][maxchar]" zu schreiben, funktioniert aber irgendwie nicht
+  //habe versucht in Zeile 68 "namensliste[anzahl][maxchar]" zu schreiben, funktioniert aber irgendwie nicht
   
   char namensliste[12][50] = {"Oliver", "Jakob Kurzmann", "Jakob Rumpf", "Jan", "Fabio", "Sebastian Sever", "Matteo", "Sebastian Pojer", "Elias Hoebel", "Elias Kolb", "Tobias", "Eric" };
   
