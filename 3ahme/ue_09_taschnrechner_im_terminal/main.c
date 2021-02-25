@@ -67,7 +67,7 @@ void ausgabe(double f[], int anzahl)
     {
       if (i == 0) 
       {
-        printf("Min: %lf", f[i]);
+        printf(" Minimum: %lf", f[i]);
       }
     }
   }
@@ -78,7 +78,8 @@ void sucheBefehl(char *f[], int anzahlFeld, double rv[], double ergebnis[])
 {
   int summe;
   int avg;
-  int min, max;
+  int min; 
+  int max;
   int zaehler = 0;
   int n;
   double pruefer;
