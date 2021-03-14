@@ -14,15 +14,15 @@ int getOp(char *txt)
 {
 
  if(strcmp("+", txt) == 0) {
-    return 10;
+    return 1;
   } else if(strcmp("-", txt) == 0) {
-    return 20; 
+    return 2; 
   } else if(strcmp("*", txt) == 0) {
-    return 30;
+    return 3;
   }else if(strcmp("/", txt) == 0) {
-    return 40;
+    return 4;
   } else{
-    return 100;
+    return 0;
   }
 }
 
@@ -30,19 +30,19 @@ void calc(double num1, double num2, int op, double *result)
 {
     switch(op)
     {
-        case 100:
+        case 0:
             printf("\tFehler!!!\n");
             break;
-        case 10:
+        case 1:
             *result = num1 + num2;
             break;
-        case 20:
+        case 2:
             *result = num1 - num2;
             break;
-        case 30:
+        case 3:
             *result = num1 * num2;
             break;
-        case 40:
+        case 4:
             *result = num1 / num2;
             break;
     }  
@@ -51,14 +51,23 @@ void calc(double num1, double num2, int op, double *result)
 int getLengthOfNumber(char *text) 
 {
     int rv = 0;
-    double test = 0.0;
+    int merker = 0;
+    int merker2 = 0;
    
     for (int i=0; i<10; i++) {
-        if((sscanf(text, "%lf", &test)) == 1) 
+        if((text[i] >= '0' && text[i] <= '9' && merker < 1 && merker2 < 1) || (text[i] == '-' && i==0) || text[i] == '.') 
         {
-          rv++;
+            if(text[i] == '-') 
+            {
+                merker++;
+            } else if(text[i] == '.') 
+            {
+                merker2++;
+            }
+            rv++;
+
         } else
-          return rv;
+            return rv;
     }
     return rv;
 }
@@ -143,12 +152,11 @@ int parseText(char *text, int length, double *result)
 
 int main (int argc, char** argv)
 {
-  double result;
-  //int rv;
+  double ergebnis;
+
   
-  int rv = parseText(*argv, argc, &result);
-  printf("\tErgebnis: %.2lf \nRv: %d\n", result, rv);
-  //rv = getOp('+');
+  parseText(argv[1], strlen(argv[1]),  &ergebnis);
+  printf("\tErgebnis: %.2lf\n\n", ergebnis);  
   
   return 0;
 }
