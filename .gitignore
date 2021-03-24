@@ -144,3 +144,5 @@ dkms.conf
 /3ahme/ue_09_taschnrechner_im_terminal/dist/
 /3ahme/ue09_intelligentertaschenrechner/dist/
 /3ahme/ue09_intelligentertaschenrechner/build/
+/3ahme/ue10_string-replacedelete/build/
+/3ahme/ue10_string-replacedelete/dist/
