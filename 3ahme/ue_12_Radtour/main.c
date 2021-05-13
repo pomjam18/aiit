@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 struct datum{
     int tag;
@@ -303,6 +304,57 @@ void loescheBildschirm()
   system("clear"); 
 }
 
+int radourLaden(struct radtour touren[], int *zaehler) 
+{
+
+    char s[100000];
+
+    FILE *f = fopen("daten.txt", "r");
+
+     if (f == NULL) 
+     {
+       
+        return 0;
+    }
+    while(fgets(s, sizeof(s), f) != NULL) 
+    {
+     
+        sscanf(s, "%d", &(*zaehler));
+
+        for (int i = 0; i < (*zaehler); i++) 
+        {
+         
+            fgets(s, sizeof(s), f);            
+            sscanf(s, "\n%s , %lf , %lf , %d , %d , %d , %d", &touren[i].name, &touren[i].laenge, &touren[i].hoehenmeter, &touren[i].anzahl, &touren[i].tour.tag, &touren[i].tour.monat, &touren[i].tour.jahr);
+        }
+    }
+    fclose(f);
+    sortieren(touren, *zaehler);
+   
+    return 1;
+}
+
+int radtourSpeichern(struct radtour touren[], int zaehler) 
+{
+
+    FILE *f = fopen("daten.txt", "w");
+
+    if(f == NULL) 
+    {
+     
+        printf("Fehler (Fehler %d)\n", errno);
+    }
+    fprintf(f, "%d\n", zaehler);
+   
+    for (int i = 0; i < zaehler; i++) 
+    {
+     
+        fprintf(f, "%s , %lf , %lf , %d , %d , %d , %d\n", touren[i].name, touren[i].laenge, touren[i].hoehenmeter, touren[i].anzahl, touren[i].tour.tag, touren[i].tour.monat, touren[i].tour.jahr);
+    }
+    fclose(f);
+   
+    return 1;
+}
 
 int main () 
 {
@@ -311,6 +363,7 @@ int main ()
     double sum = 0;
     double avg = 0;
     int x = 0;
+    char wahl[5];
    
 loescheBildschirm();      
     
@@ -321,7 +374,10 @@ printf("  ---------\n\n");
 printf("  1...Neue Radtour\n");
 printf("  2...Ausgabe aller Radtouren\n");
 printf("  3...Entfernen einer Radtour\n");
-printf("  4...Beenden\n");
+printf("  4...Laden aller Radtouren\n");
+printf("  5...Speichern aller Radtouren\n");
+printf("  6...Beenden\n");
+
     
 
 x = eingabe("\n  Ihre Wahl:");
@@ -337,8 +393,13 @@ x = eingabe("\n  Ihre Wahl:");
           printf("  ------------\n\n");
           
            neueRadtour(tour, &zaehler);        
-           main();
-           break;  
+            printf("Zurück ins Hauptmenü?[J/N]");
+          sscanf(stdin, wahl, 5);
+          if(wahl == 'J')
+              main();
+          else
+              return 0;
+         
           
        case 2:
           loescheBildschirm();  
@@ -373,16 +434,50 @@ x = eingabe("\n  Ihre Wahl:");
                 printf("%2d.%d.%d", tour[i].tour.tag, tour[i].tour.monat, tour[i].tour.jahr);
           
            } 
-          main();
+          printf("Zurück ins Hauptmenü?[J/N]");
+          sscanf(stdin, wahl, 5);
+          if(wahl == 'J')
+              main();
+          else
+              return 0;
           break;  
         
        case 3:
            loescheBildschirm();  
            deleteTour(tour, &zaehler);
            main();
+            printf("Zurück ins Hauptmenü?[J/N]");
+          sscanf(stdin, wahl, 5);
+          if(wahl == 'J')
+              main();
+          else
+              return 0;
           break;     
       
-       case 4:
+        case 4:
+            loescheBildschirm();  
+            radourLaden(tour, zaehler);
+             printf("Zurück ins Hauptmenü?[J/N]");
+          sscanf(stdin, wahl, 5);
+          if(wahl == 'J')
+              main();
+          else
+              return 0;
+            break; 
+            
+        case 5:
+            loescheBildschirm();  
+            radtourSpeichern(tour, zaehler);
+             printf("Zurück ins Hauptmenü?[J/N]");
+          sscanf(stdin, wahl, 5);
+          if(wahl == 'J')
+              main();
+          else
+              return 0;
+            break; 
+                   
+          
+       case 6:
           loescheBildschirm();  
           return 0;
           break;      
